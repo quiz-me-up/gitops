@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: quizmeup
+  name: configuration-server-deployment
+  labels:
+    app.kubernetes.io/name: quizmeup-configuration-server
+    app.kubernetes.io/component: deployment
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: service
+      app.kubernetes.io/name: quizmeup-configuration-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: service
+        app.kubernetes.io/name: quizmeup-configuration-server
+    spec:
+      containers:
+        - name: configuration-server-container
+          image: quizmeup/configuration-server:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: configuration-server-config-map
+            - secretRef:
+                name: configuration-server-secret
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 380Mi
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              port: 8080
+              scheme: HTTP
+              path: /actuator/health
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 120
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              port: 8080
+              scheme: HTTP
+              path: /actuator/health
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 120
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}

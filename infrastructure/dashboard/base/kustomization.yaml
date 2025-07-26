@@ -1,0 +1,4 @@
+resources:
+  - admin-user.yaml
+  - deployment.yaml
+  - ingress.yaml
