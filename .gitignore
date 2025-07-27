@@ -41,3 +41,4 @@ build/
 tls.crt
 tls.key
 token.txt
+admin-password.txt

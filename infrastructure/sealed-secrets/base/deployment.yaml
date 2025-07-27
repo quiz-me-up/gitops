@@ -162,7 +162,7 @@ spec:
           volumeMounts:
             - mountPath: /tmp
               name: tmp
-            - name: sealed-secret-key
+            - name: sealed-secrets-key
               mountPath: /bitnami/sealed-secrets
       imagePullSecrets: []
       initContainers: []
@@ -177,9 +177,9 @@ spec:
       volumes:
         - emptyDir: {}
           name: tmp
-        - name: sealed-secret-key
+        - name: sealed-secrets-key
           secret:
-            secretName: sealed-secret-key
+            secretName: sealed-secrets-key
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
