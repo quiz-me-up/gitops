@@ -23,10 +23,15 @@ spec:
           image: quizmeup/registry-server:latest
           imagePullPolicy: Always
           envFrom:
-            - configMapRef:
-                name: registry-server-config-map
             - secretRef:
                 name: registry-server-secret
+          env:
+            - name: SPRING_CONFIG_LOCATION
+              value: "classpath:/bootstrap.yml,/config/bootstrap.yml"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+              readOnly: true
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -54,6 +59,10 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 120
+      volumes:
+        - name: config-volume
+          configMap:
+            name: registry-server-config-map
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

@@ -1,7 +1,7 @@
 resources:
   - ../../base
 patches:
-  - path: config-map-path.yaml
+  - path: config-map-patch.yaml
     target:
       kind: ConfigMap
       name: registry-server-config-map

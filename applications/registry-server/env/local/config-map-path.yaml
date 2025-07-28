@@ -1,8 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: quizmeup
-  name: registry-server-config-map
-data:
-  spring.cloud.uri: 'http://configuration-server.quizmeup.local/configuration'
