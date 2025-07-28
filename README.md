@@ -14,5 +14,6 @@ command:
 
 cat secret.yaml | kubeseal \
 --format yaml \
+--allow-empty-data \
 > sealed-secret.yaml
 ```
