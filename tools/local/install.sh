@@ -3,9 +3,9 @@
 set -e
 
 # Configuration
-DASHBOARD_TLS_PATH="../../../infrastructure/dashboard/env/local"
-ARGOCD_TLS_PATH="../../../infrastructure/argo-cd/env/local"
-SEALED_SECRETS_TLS_PATH="../../../infrastructure/sealed-secrets/base"
+DASHBOARD_TLS_PATH="../../infrastructure/dashboard/env/local"
+ARGOCD_TLS_PATH="../../infrastructure/argo-cd/env/local"
+SEALED_SECRETS_TLS_PATH="../../infrastructure/sealed-secrets/base"
 
 # Couleurs pour les logs
 RED='\033[0;31m'
@@ -135,12 +135,12 @@ generate_tls_cert "$SEALED_SECRETS_TLS_PATH" "Sealed Secrets"
 # 2. Déploiement de Sealed Secrets
 log_info "=== DÉPLOIEMENT DE SEALED SECRETS ==="
 create_tls_secret "sealed-secrets-key" "$SEALED_SECRETS_TLS_PATH/tls.crt" "$SEALED_SECRETS_TLS_PATH/tls.key" "kube-system"
-apply_kustomize "../../../infrastructure/sealed-secrets/env/local" "Sealed Secrets"
+apply_kustomize "../../infrastructure/sealed-secrets/env/local" "Sealed Secrets"
 wait_for_deployment "kube-system" "sealed-secrets-controller" 120
 
 # 3. Déploiement de NGINX Ingress Controller
 log_info "=== DÉPLOIEMENT DE NGINX INGRESS CONTROLLER ==="
-apply_kustomize "../../../infrastructure/nginx/env/local" "NGINX Ingress Controller"
+apply_kustomize "../../infrastructure/nginx/env/local" "NGINX Ingress Controller"
 
 # Attendre que le namespace ingress-nginx soit créé
 log_info "Attente de la création du namespace ingress-nginx..."
@@ -162,7 +162,7 @@ fi
 
 # 4. Déploiement du Kubernetes Dashboard
 log_info "=== DÉPLOIEMENT DU KUBERNETES DASHBOARD ==="
-apply_kustomize "../../../infrastructure/dashboard/env/local" "Kubernetes Dashboard"
+apply_kustomize "../../infrastructure/dashboard/env/local" "Kubernetes Dashboard"
 
 # Attendre que le namespace soit créé avant de créer le secret
 log_info "Attente de la création du namespace kubernetes-dashboard..."
@@ -199,7 +199,7 @@ fi
 
 # 5. Déploiement d'Argo CD
 log_info "=== DÉPLOIEMENT D'ARGO CD ==="
-apply_kustomize "../../../infrastructure/argo-cd/env/local" "Argo CD"
+apply_kustomize "../../infrastructure/argo-cd/env/local" "Argo CD"
 
 # Attendre que le namespace soit créé avant de créer le secret
 log_info "Attente de la création du namespace argocd..."

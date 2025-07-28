@@ -1,0 +1,11 @@
+resources:
+  - ../../base
+patches:
+  - path: config-map-path.yaml
+    target:
+      kind: ConfigMap
+      name: registry-server-config-map
+  - path: ingress-patch.yaml
+    target:
+      kind: Ingress
+      name: registry-server-ingress

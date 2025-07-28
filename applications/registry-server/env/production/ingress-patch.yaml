@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: quizmeup
+  name: registry-server-ingress
+spec:
+  rules:
+    - host: registry-server.quizmeup
+      http:
+        paths:
+          - backend:
+              service:
+                name: registry-server-service
+                port:
+                  number: 8080
+            pathType: ImplementationSpecific

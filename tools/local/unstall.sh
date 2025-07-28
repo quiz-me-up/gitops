@@ -3,9 +3,9 @@
 set -e
 
 # Configuration
-DASHBOARD_TLS_PATH="../../../infrastructure/dashboard/env/local"
-ARGOCD_TLS_PATH="../../../infrastructure/argo-cd/env/local"
-SEALED_SECRETS_TLS_PATH="../../../infrastructure/sealed-secrets/base"
+DASHBOARD_TLS_PATH="../../infrastructure/dashboard/env/local"
+ARGOCD_TLS_PATH="../../infrastructure/argo-cd/env/local"
+SEALED_SECRETS_TLS_PATH="../../infrastructure/sealed-secrets/base"
 
 # Couleurs pour les logs
 RED='\033[0;31m'
@@ -208,27 +208,27 @@ log_info "=== DÉBUT DE LA DÉSINSTALLATION ==="
 
 # 1. Suppression d'Argo CD
 log_info "=== SUPPRESSION D'ARGO CD ==="
-delete_kustomize "../../../infrastructure/argo-cd/env/local" "Argo CD"
+delete_kustomize "../../infrastructure/argo-cd/env/local" "Argo CD"
 delete_secret "argocd-tls" "argocd"
 delete_namespace "argocd"
 wait_for_namespace_deletion "argocd" 120
 
 # 2. Suppression du Kubernetes Dashboard
 log_info "=== SUPPRESSION DU KUBERNETES DASHBOARD ==="
-delete_kustomize "../../../infrastructure/dashboard/env/local" "Kubernetes Dashboard"
+delete_kustomize "../../infrastructure/dashboard/env/local" "Kubernetes Dashboard"
 delete_secret "dashboard-tls" "kubernetes-dashboard"
 delete_namespace "kubernetes-dashboard"
 wait_for_namespace_deletion "kubernetes-dashboard" 60
 
 # 3. Suppression de NGINX Ingress Controller
 log_info "=== SUPPRESSION DE NGINX INGRESS CONTROLLER ==="
-delete_kustomize "../../../infrastructure/nginx/env/local" "NGINX Ingress Controller"
+delete_kustomize "../../infrastructure/nginx/env/local" "NGINX Ingress Controller"
 delete_namespace "ingress-nginx"
 wait_for_namespace_deletion "ingress-nginx" 120
 
 # 4. Suppression de Sealed Secrets
 log_info "=== SUPPRESSION DE SEALED SECRETS ==="
-delete_kustomize "../../../infrastructure/sealed-secrets/env/local" "Sealed Secrets"
+delete_kustomize "../../infrastructure/sealed-secrets/env/local" "Sealed Secrets"
 delete_secret "sealed-secrets-key" "kube-system"
 
 # 5. Suppression des ressources cluster
