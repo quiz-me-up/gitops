@@ -28,12 +28,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
-            - name: SPRING_CONFIG_LOCATION
-              value: "/config/application.yml"
-          volumeMounts:
-            - name: config-volume
-              mountPath: /config
-              readOnly: true
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -61,10 +55,6 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 120
-      volumes:
-        - name: config-volume
-          configMap:
-            name: administration-server-config-map
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
