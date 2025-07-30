@@ -1,4 +1,5 @@
 resources:
+  - service-account.yaml
   - actuator-config-map.yaml
   - application-config-map.yaml
   - logging-config-map.yaml
