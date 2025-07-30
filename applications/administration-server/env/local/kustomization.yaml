@@ -4,8 +4,8 @@ patches:
   - path: config-map-patch.yaml
     target:
       kind: ConfigMap
-      name: registry-server-config-map
+      name: administration-server-config-map
   - path: ingress-patch.yaml
     target:
       kind: Ingress
-      name: registry-server-ingress
+      name: administration-server-ingress
