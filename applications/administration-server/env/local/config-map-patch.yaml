@@ -6,6 +6,6 @@ metadata:
   name: administration-server-config-map
 data:
   application.yml: |
-    # Your application configuration here
-    server:
-      port: 8080
+    spring:
+      main:
+        allow-bean-definition-overriding: true
