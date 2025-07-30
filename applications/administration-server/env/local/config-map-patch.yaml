@@ -1,11 +1,10 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: quizmeup
   name: administration-server-config-map
 data:
-  boostrap.yml: |
+  application.yml: |
     spring:
       cloud:
         config:
@@ -17,6 +16,10 @@ data:
             namespace: quizmeup
             sources:
               - name: application-config-map
+                namespace: quizmeup
               - name: actuator-config-map
+                namespace: quizmeup
               - name: logging-config-map
+                namespace: quizmeup
               - name: quizmeup-config-map
+                namespace: quizmeup
