@@ -6,6 +6,3 @@ metadata:
   name: administration-server-config-map
 data:
   application.yml: |
-    spring:
-      application:
-        name: administration-server-application

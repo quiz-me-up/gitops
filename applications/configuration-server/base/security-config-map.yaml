@@ -7,8 +7,6 @@ metadata:
 data:
   application.yml: |
     spring:
-      main:
-        allow-bean-definition-overriding: true
       security:
         oauth2:
           resource-server:

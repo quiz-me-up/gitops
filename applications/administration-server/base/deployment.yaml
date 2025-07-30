@@ -28,6 +28,19 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
+
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_NAMESPACE
+              value: "quizmeup"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
+              value: "spring-application-config-map"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_1_NAME
+              value: "actuator-config-map"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_2_NAME
+              value: "logging-config-map"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_3_NAME
+              value: "security-config-map"
           ports:
             - containerPort: 8080
               protocol: TCP

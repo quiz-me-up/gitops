@@ -6,13 +6,3 @@ metadata:
   name: administration-server-config-map
 data:
   application.yml: |
-    spring:
-      cloud:
-        kubernetes:
-          config:
-            enabled: true
-            fail-fast: true
-            namespace: quizmeup
-            sources:
-              - name: application-config-map
-                namespace: quizmeup
