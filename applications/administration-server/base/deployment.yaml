@@ -41,6 +41,8 @@ spec:
               value: "logging-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_3_NAME
               value: "security-config-map"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_4_NAME
+              value: "administration-server-config-map"
           ports:
             - containerPort: 8080
               protocol: TCP
