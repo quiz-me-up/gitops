@@ -28,11 +28,16 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
-
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
               value: "true"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_NAMESPACE
               value: "quizmeup"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_FAIL_FAST
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_RELOAD_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLE_API
+              value: "true"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
               value: "spring-application-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_1_NAME
