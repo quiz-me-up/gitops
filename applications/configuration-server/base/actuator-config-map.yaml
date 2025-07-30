@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: actuator-config-map
 data:
-  actuator.yml: |
+  application.yml: |
     management:
       endpoint:
         env:

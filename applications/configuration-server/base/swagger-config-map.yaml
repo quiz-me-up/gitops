@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: swagger-config-map
 data:
-  swagger.yml: |
+  application.yml: |
     springdoc:
       swagger-ui:
         use-root-path: true

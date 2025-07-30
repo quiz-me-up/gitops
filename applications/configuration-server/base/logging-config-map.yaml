@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: logging-config-map
 data:
-  logging.yml: |
+  application.yml: |
     logging:
       level:
         org.mongodb: ERROR

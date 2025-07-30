@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: mongo-config-map
 data:
-  mongo.yml: |
+  application.yml: |
     spring:
       data:
         mongodb:

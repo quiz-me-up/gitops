@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: quizmeup-config-map
 data:
-  quizmeup.yml: |
+  application.yml: |
     quizmeup:
       security:
         enabled: true

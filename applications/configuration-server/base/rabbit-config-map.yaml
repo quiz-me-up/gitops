@@ -5,7 +5,7 @@ metadata:
   namespace: quizmeup
   name: rabbit-config-map
 data:
-  rabbit.yml: |
+  application.yml: |
     spring:
       rabbitmq:
         username: ${QUIZ_ME_UP_RABBITMQ_USERNAME}
