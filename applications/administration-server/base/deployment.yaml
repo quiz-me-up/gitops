@@ -26,6 +26,8 @@ spec:
             - secretRef:
                 name: administration-server-secret
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "kubernetes"
             - name: SPRING_CONFIG_LOCATION
               value: "/config/application.yml"
           volumeMounts:
