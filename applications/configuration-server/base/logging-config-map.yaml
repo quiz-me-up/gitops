@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: quizmeup
+  name: logging-config-map
+data:
+  logging.yml: |
+    logging:
+      level:
+        org.mongodb: ERROR
+        io.github.quizmeup: DEBUG
+        com.netflix.discovery: ERROR
+        com.netflix.eureka: ERROR
+        org.springframework.context.support: ERROR
+        org.springframework.security: ERROR
+        org.springframework.web: ERROR
+        org.springframework.cloud: ERROR
+        org.springframework.boot: ERROR
+        org.springframework.amqp.rabbit: ERROR
+        org.springframework.data.convert.CustomConversions: ERROR

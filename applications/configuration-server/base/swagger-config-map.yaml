@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: quizmeup
+  name: swagger-config-map
+data:
+  swagger.yml: |
+    springdoc:
+      swagger-ui:
+        use-root-path: true
+        oauth:
+          usePkceWithAuthorizationCodeGrant: true
+          client-id: swagger
+          client-secret:
+      oauth-flow:
+        authorization-url: http://authorization-server.quizmeup.local/oauth2/authorize
+        token-url: http://authorization-server.quizmeup.local/oauth2/token

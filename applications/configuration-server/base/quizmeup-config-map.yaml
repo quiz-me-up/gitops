@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: quizmeup
+  name: quizmeup-config-map
+data:
+  quizmeup.yml: |
+    quizmeup:
+      security:
+        enabled: true
+        unprotected-path:
+          - /
+          - /error
+          - /favicon.ico
+          - /*/*.png
+          - /*/*.gif
+          - /*/*.svg
+          - /*/*.jpg
+          - /*/*.html
+          - /*/*.css
+          - /*/*.js
+          - /*/*.js.map
+          - /actuator/**
+          - /v3/api-docs
+          - /v3/api-docs/**
+          - /swagger-ui.html
+          - /swagger-resources/**
+          - /swagger-ui/**
+          - /webjars/**
+          - /assets/**
+          - /csrf
+          - /oauth/**
+          - /oauth2/**
+          - /login
+          - /logout

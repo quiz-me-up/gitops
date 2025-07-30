@@ -1,7 +1,8 @@
 resources:
-  - autoscaler.yaml
-  - config-map.yaml
-  - deployment.yaml
-  - ingress.yaml
-  - sealed-secret.yaml
-  - service.yaml
+  - actuator-config-map.yaml
+  - application-config-map.yaml
+  - logging-config-map.yaml
+  - mongo-config-map.yaml
+  - quizmeup-config-map.yaml
+  - rabbit-config-map.yaml
+  - swagger-config-map.yaml

@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: registry-server-autoscaler
+  name: administration-server-autoscaler
   namespace: quizmeup
 spec:
   minReplicas: 1
@@ -10,7 +10,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: registry-server-deployment
+    name: administration-server-deployment
   metrics:
     - type: Resource
       resource:

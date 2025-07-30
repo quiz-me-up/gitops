@@ -3,31 +3,31 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: quizmeup
-  name: registry-server-deployment
+  name: administration-server-deployment
   labels:
-    app.kubernetes.io/name: quizmeup-registry-server
     app.kubernetes.io/component: deployment
+    app.kubernetes.io/name: quizmeup-administration-server
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/component: service
-      app.kubernetes.io/name: quizmeup-registry-server
+      app.kubernetes.io/name: quizmeup-administration-server
   template:
     metadata:
       labels:
         app.kubernetes.io/component: service
-        app.kubernetes.io/name: quizmeup-registry-server
+        app.kubernetes.io/name: quizmeup-administration-server
     spec:
       containers:
-        - name: registry-server-container
-          image: quizmeup/registry-server:latest
+        - name: administration-server-container
+          image: quizmeup/administration-server:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-                name: registry-server-secret
+                name: administration-server-secret
           env:
             - name: SPRING_CONFIG_LOCATION
-              value: "classpath:/bootstrap.yml,/config/bootstrap.yml"
+              value: "/config/application.yml"
           volumeMounts:
             - name: config-volume
               mountPath: /config
@@ -62,7 +62,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: registry-server-config-map
+            name: administration-server-config-map
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

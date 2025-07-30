@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: quizmeup
+  name: rabbit-config-map
+data:
+  rabbit.yml: |
+    spring:
+      rabbitmq:
+        username: ${QUIZ_ME_UP_RABBITMQ_USERNAME}
+        password: ${QUIZ_ME_UP_RABBITMQ_PASSWORD}
+        host: rabbitmq
+        port: 5672
