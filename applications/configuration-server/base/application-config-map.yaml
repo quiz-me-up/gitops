@@ -32,4 +32,4 @@ data:
         openfeign:
           oauth2:
             enabled: true
-            clientRegistrationId: server
+            clientRegistrationId: ${QUIZ_ME_UP_CLIENT_SERVER_NAME}

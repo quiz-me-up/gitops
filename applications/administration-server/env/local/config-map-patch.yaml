@@ -5,7 +5,18 @@ metadata:
   namespace: quizmeup
   name: administration-server-config-map
 data:
-  application.yml: |
+  boostrap.yml: |
     spring:
-      main:
-        allow-bean-definition-overriding: true
+      cloud:
+        config:
+          enabled: false
+        kubernetes:
+          config:
+            enabled: true
+            fail-fast: true
+            namespace: quizmeup
+            sources:
+              - name: application-config-map
+              - name: actuator-config-map
+              - name: logging-config-map
+              - name: quizmeup-config-map
