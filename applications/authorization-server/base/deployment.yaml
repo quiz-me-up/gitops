@@ -3,32 +3,30 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: quizmeup
-  name: administration-server-deployment
+  name: authorization-server-deployment
   labels:
     app.kubernetes.io/component: deployment
-    app.kubernetes.io/name: quizmeup-administration-server
+    app.kubernetes.io/name: quizmeup-authorization-server
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/component: service
-      app.kubernetes.io/name: quizmeup-administration-server
+      app.kubernetes.io/name: quizmeup-authorization-server
   template:
     metadata:
       labels:
         app.kubernetes.io/component: service
-        app.kubernetes.io/name: quizmeup-administration-server
+        app.kubernetes.io/name: quizmeup-authorization-server
     spec:
       containers:
-        - name: administration-server-container
-          image: quizmeup/administration-server:latest
+        - name: authorization-server-container
+          image: quizmeup/authorization-server:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-                name: administration-server-secret
+                name: authorization-server-secret
             - secretRef:
                 name: security-secret
-            - secretRef:
-                name: mongo-secret
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
@@ -47,15 +45,17 @@ spec:
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_INCLUDE_PROFILE_SPECIFIC_SOURCES
               value: "false"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
-              value: "logging-config-map"
+              value: "mongo-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_1_NAME
-              value: "actuator-config-map"
+              value: "logging-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_2_NAME
-              value: "security-config-map"
+              value: "actuator-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_3_NAME
-              value: "application-config-map"
+              value: "security-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_4_NAME
-              value: "administration-server-config-map"
+              value: "application-config-map"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_5_NAME
+              value: "authorization-server-config-map"
           ports:
             - containerPort: 8080
               protocol: TCP
