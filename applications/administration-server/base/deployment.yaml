@@ -25,6 +25,8 @@ spec:
           envFrom:
             - secretRef:
                 name: administration-server-secret
+            - secretRef:
+                name: security-secret
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
@@ -50,13 +52,6 @@ spec:
               value: "application-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_4_NAME
               value: "administration-server-config-map"
-            # LOGS DEBUG CRITIQUES
-            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_KUBERNETES
-              value: "DEBUG"
-            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_KUBERNETES_CONFIG
-              value: "DEBUG"
-            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP
-              value: "DEBUG"
           ports:
             - containerPort: 8080
               protocol: TCP

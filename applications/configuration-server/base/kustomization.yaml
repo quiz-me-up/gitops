@@ -8,3 +8,4 @@ resources:
   - rabbit-config-map.yaml
   - swagger-config-map.yaml
   - security-config-map.yaml
+  - mongo-sealed-secret.yaml
