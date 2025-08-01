@@ -1,7 +1,7 @@
 resources:
   - service-account.yaml
   - actuator-config-map.yaml
-  - spring-application-config-map.yaml
+  - application-config-map.yaml
   - logging-config-map.yaml
   - mongo-config-map.yaml
   - quizmeup-config-map.yaml

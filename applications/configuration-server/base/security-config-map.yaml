@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: quizmeup
-  name: application-config-map
+  name: security-config-map
 data:
   application.yml: |
     spring:
