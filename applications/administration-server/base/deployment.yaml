@@ -50,6 +50,16 @@ spec:
               value: "security-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_4_NAME
               value: "administration-server-config-map"
+            # LOGS DEBUG CRITIQUES
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_KUBERNETES
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_KUBERNETES_CONFIG
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP
+              value: "DEBUG"
+            # Exposition des endpoints pour debug
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health,info,configprops,env"
           ports:
             - containerPort: 8080
               protocol: TCP
