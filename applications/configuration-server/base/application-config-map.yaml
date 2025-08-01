@@ -9,3 +9,16 @@ data:
     spring:
       main:
         allow-bean-definition-overriding: true
+      cloud:
+        kubernetes:
+          discovery:
+            enabled: true
+            all-namespaces: false
+          client:
+            namespace: quizmeup
+    
+    eureka:
+      client:
+        enabled: false
+        register-with-eureka: false
+        fetch-registry: false
