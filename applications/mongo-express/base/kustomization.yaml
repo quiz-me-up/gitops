@@ -1,0 +1,7 @@
+resources:
+    - autoscaler.yaml
+    - deployment.yaml
+    - ingress.yaml
+    - network.yaml
+    - sealed-secret.yaml
+    - service.yaml

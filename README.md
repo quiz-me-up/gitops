@@ -12,8 +12,8 @@ To create a sealed secret from a Kubernetes secret, you can use the `kubeseal`;
 command: 
 ```bash
 
-cat security-secret.yaml | kubeseal \
+cat secret.yaml | kubeseal \
 --format yaml \
 --allow-empty-data \
-> security-sealed-secret.yaml
+> sealed-secret.yaml
 ```

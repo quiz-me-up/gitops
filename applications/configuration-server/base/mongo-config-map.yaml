@@ -9,7 +9,7 @@ data:
     spring:
       data:
         mongodb:
-          host: mongo-database
+          host: mongo-database-service
           port: 27017
           username: ${QUIZ_ME_UP_MONGO_DATABASE_USERNAME}
           password: ${QUIZ_ME_UP_MONGO_DATABASE_PASSWORD}
