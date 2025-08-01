@@ -42,6 +42,8 @@ spec:
               value: "true"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLE_API
               value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_INCLUDE_PROFILE_SPECIFIC_SOURCES
+              value: "false"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_2_NAME
               value: "logging-config-map"
             - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_1_NAME
