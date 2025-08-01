@@ -14,5 +14,5 @@ data:
           client-id: swagger
           client-secret:
       oauth-flow:
-        authorization-url: http://authorization-server.quizmeup.svc.cluster.local:8080/oauth2/authorize
-        token-url: http://authorization-server.quizmeup.svc.cluster.local:8080/oauth2/token
+        authorization-url: http://authorization-server-service:8080/oauth2/authorize
+        token-url: http://authorization-server-service:8080/oauth2/token

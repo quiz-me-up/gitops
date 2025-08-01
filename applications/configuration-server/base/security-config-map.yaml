@@ -11,7 +11,7 @@ data:
         oauth2:
           resource-server:
             jwt:
-              issuer-uri: http://authorization-server.quizmeup.svc.cluster.local:8080
+              issuer-uri: http://authorization-server-service:8080
           client:
             registration:
               server:
@@ -25,7 +25,7 @@ data:
                   - write
             provider:
               spring:
-                token-uri: http://authorization-server.quizmeup.svc.cluster.local:8080/oauth2/token
+                token-uri: http://authorization-server-service:8080/oauth2/token
       cloud:
         openfeign:
           oauth2:
