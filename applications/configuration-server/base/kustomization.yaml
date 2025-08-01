@@ -1,5 +1,6 @@
 resources:
   - service-account.yaml
+
   - actuator-config-map.yaml
   - application-config-map.yaml
   - logging-config-map.yaml
@@ -8,4 +9,7 @@ resources:
   - rabbit-config-map.yaml
   - swagger-config-map.yaml
   - security-config-map.yaml
+
   - mongo-sealed-secret.yaml
+  - rabbit-sealed-secret.yaml
+  - security-sealed-secret.yaml
