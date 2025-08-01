@@ -7,3 +7,4 @@ resources:
   - quizmeup-config-map.yaml
   - rabbit-config-map.yaml
   - swagger-config-map.yaml
+  - security-config-map.yaml
