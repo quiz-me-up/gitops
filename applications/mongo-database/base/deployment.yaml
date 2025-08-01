@@ -1,5 +1,79 @@
 ---
-apiVersion: v1
-kind: Namespace
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: mongo-database
+  name: mongo-database-deployment
+  namespace: quizmeup
+  labels:
+    app.kubernetes.io/component: deployment
+    app.kubernetes.io/name: quizmeup-mongo-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-database
+  template:
+    metadata:
+      labels:
+        app: mongo-database
+    spec:
+      containers:
+        - name: mongo-database
+          image: quizmeup/mongo:latest
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: QUIZ_ME_UP_MONGO_DATABASE_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: QUIZ_ME_UP_MONGO_DATABASE_PASSWORD
+          volumeMounts:
+            - name: mongo-database-storage
+              mountPath: /data/db
+            - name: mongo-database-config-volume
+              mountPath: /etc/mongod.conf
+              subPath: mongod.conf
+            - name: mongo-database-logs
+              mountPath: /var/log/mongodb
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      volumes:
+        - name: mongo-database-storage
+          persistentVolumeClaim:
+            claimName: mongo-database-persistent-volume-claim
+        - name: mongo-database-config-volume
+          configMap:
+            name: mongo-database-config-map
+        - name: mongo-database-logs
+          emptyDir: { }

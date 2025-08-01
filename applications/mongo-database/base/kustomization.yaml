@@ -1,2 +1,5 @@
 resources:
+  - service.yaml
   - deployment.yaml
+  - config-map.yaml
+  - persistent-volume-claim.yaml
