@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-broker-head-less
+  namespace: quizmeup
+  labels:
+    app: rabbitmq-broker
+spec:
+  clusterIP: None
+  selector:
+    app: rabbitmq-broker
+  ports:
+    - name: amqp
+      port: 5672
+      targetPort: 5672
+    - name: management
+      port: 15672
+      targetPort: 15672
+    - name: epmd
+      port: 4369
+      targetPort: 4369
+    - name: cluster-rpc
+      port: 25672
+      targetPort: 25672

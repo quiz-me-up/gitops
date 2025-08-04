@@ -231,19 +231,23 @@ log_info "=== SUPPRESSION DE SEALED SECRETS ==="
 delete_kustomize "../../infrastructure/sealed-secrets/env/local" "Sealed Secrets"
 delete_secret "sealed-secrets-key" "kube-system"
 
-# 5. Suppression des ressources cluster
+# 5. Suppression de Sealed Secrets
+log_info "=== SUPPRESSION DE METRICS SERVER ==="
+delete_kustomize "../../infrastructure/metrics-server/env/local" "Metrics server"
+
+# 6. Suppression des ressources cluster
 log_info "=== SUPPRESSION DES RESSOURCES CLUSTER ==="
 delete_cluster_resources
 
-# 6. Suppression des CRDs
+# 7. Suppression des CRDs
 log_info "=== SUPPRESSION DES CUSTOM RESOURCE DEFINITIONS ==="
 delete_crds
 
-# 7. Nettoyage des fichiers locaux
+# 8. Nettoyage des fichiers locaux
 log_info "=== NETTOYAGE DES FICHIERS LOCAUX ==="
 cleanup_local_files
 
-# 8. Vérifications finales
+# 9. Vérifications finales
 log_info "=== VÉRIFICATIONS FINALES ==="
 
 # Vérifier les namespaces restants

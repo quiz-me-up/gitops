@@ -1,0 +1,8 @@
+resources:
+  - account.yaml
+  - autoscaler.yaml
+  - config-map.yaml
+  - head-less-service.yaml
+  - sealed-secret.yaml
+  - service.yaml
+  - stateful-set.yaml

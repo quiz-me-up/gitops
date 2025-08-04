@@ -160,7 +160,45 @@ else
     log_warning "Namespace ingress-nginx non créé dans les temps"
 fi
 
-# 4. Déploiement du Kubernetes Dashboard
+# 4. Déploiement de Metrics Server
+log_info "=== DÉPLOIEMENT DU METRICS SERVER ==="
+apply_kustomize "../../infrastructure/metrics-server/env/local" "Metrics Server"
+
+# Attendre que le namespace kube-system contienne le déploiement metrics-server
+log_info "Attente du déploiement de Metrics Server..."
+timeout=60
+while [ $timeout -gt 0 ] && ! kubectl get deployment metrics-server -n kube-system >/dev/null 2>&1; do
+    sleep 1
+    ((timeout--))
+done
+
+if kubectl get deployment metrics-server -n kube-system >/dev/null 2>&1; then
+    wait_for_deployment "kube-system" "metrics-server" 120
+
+    # Vérification que Metrics Server fonctionne correctement
+    log_info "Vérification du bon fonctionnement de Metrics Server..."
+    timeout=60
+    metrics_ready=false
+
+    while [ $timeout -gt 0 ] && [ "$metrics_ready" = false ]; do
+        if kubectl top nodes >/dev/null 2>&1; then
+            metrics_ready=true
+            log_success "Metrics Server opérationnel - les métriques sont disponibles"
+        else
+            sleep 2
+            ((timeout-=2))
+        fi
+    done
+
+    if [ "$metrics_ready" = false ]; then
+        log_warning "Metrics Server déployé mais les métriques ne sont pas encore disponibles"
+        log_info "Vérifiez les logs avec: kubectl logs -n kube-system deployment/metrics-server"
+    fi
+else
+    log_error "Déploiement metrics-server non trouvé dans kube-system"
+fi
+
+# 5. Déploiement du Kubernetes Dashboard
 log_info "=== DÉPLOIEMENT DU KUBERNETES DASHBOARD ==="
 apply_kustomize "../../infrastructure/dashboard/env/local" "Kubernetes Dashboard"
 
@@ -197,7 +235,7 @@ else
     log_warning "Namespace kubernetes-dashboard non créé, secret TLS non créé"
 fi
 
-# 5. Déploiement d'Argo CD
+# 6. Déploiement d'Argo CD
 log_info "=== DÉPLOIEMENT D'ARGO CD ==="
 apply_kustomize "../../infrastructure/argo-cd/env/local" "Argo CD"
 
@@ -239,6 +277,7 @@ echo ""
 log_info "Services déployés:"
 echo "  • Sealed Secrets Controller"
 echo "  • NGINX Ingress Controller"
+echo "  • Metrics Server"
 echo "  • Kubernetes Dashboard"
 echo "  • Argo CD"
 echo ""
