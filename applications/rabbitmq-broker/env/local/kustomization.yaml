@@ -1,2 +1,56 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: quizmeup
+
 resources:
   - ../../base
+
+patches:
+  - path: stateful-set-patch.yaml
+    target:
+      kind: StatefulSet
+      name: rabbitmq-broker-headless
+  - path: autoscaler-patch.yaml
+    target:
+      kind: HorizontalPodAutoscaler
+      name: rabbitmq-broker-hpa
+  - target:
+      kind: StatefulSet
+      name: rabbitmq-broker-headless
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  - target:
+      kind: ConfigMap
+      name: rabbitmq-broker-config-map
+    patch: |-
+      - op: replace
+        path: /data/rabbitmq.conf
+        value: |2
+          # Nom du cluster
+          cluster_name = quizmeup-rabbitmq-local
+          
+          # Configuration pour un seul nœud (pas de clustering)
+          cluster_formation.peer_discovery_backend = classic_config
+          cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-broker-headless-0.rabbitmq-broker-headless.quizmeup.svc.cluster.local
+          
+          # Persistance des données
+          queue_master_locator = min-masters
+          
+          # Configuration de base
+          listeners.tcp.default = 5672
+          management.tcp.port = 15672
+          management.tcp.ip = 0.0.0.0
+          
+          # Désactiver le clustering pour un seul nœud
+          cluster_partition_handling = ignore
+          
+          # Configuration pour environnement local
+          vm_memory_high_watermark.relative = 0.8
+          disk_free_limit.relative = 2.0
+          
+          # Logs
+          log.console = true
+          log.console.level = info

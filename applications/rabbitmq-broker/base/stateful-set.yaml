@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: rabbitmq-broker
+  name: rabbitmq-broker-headless
   namespace: quizmeup
   labels:
     app: rabbitmq-broker
 spec:
-  serviceName: rabbitmq-broker-headless
+  serviceName: rabbitmq-broker-service
   replicas: 3
   selector:
     matchLabels:

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq-broker-headless
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: rabbitmq
+          env:
+            # Configuration pour un seul nœud - pas de clustering
+            - name: RABBITMQ_USE_LONGNAME
+              value: "false"
+            - name: RABBITMQ_NODENAME
+              value: rabbit@rabbitmq-broker-headless-0
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbitmq-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 500Mi
+
