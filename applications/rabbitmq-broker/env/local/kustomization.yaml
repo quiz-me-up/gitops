@@ -18,7 +18,7 @@ patches:
   - path: autoscaler-patch.yaml
     target:
       kind: HorizontalPodAutoscaler
-      name: rabbitmq-broker-hpa
+      name: rabbitmq-broker-autoscaler
   - target:
       kind: StatefulSet
       name: rabbitmq-broker-stateful-set

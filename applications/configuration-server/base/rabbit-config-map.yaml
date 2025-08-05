@@ -10,5 +10,5 @@ data:
       rabbitmq:
         username: ${QUIZ_ME_UP_RABBITMQ_USERNAME}
         password: ${QUIZ_ME_UP_RABBITMQ_PASSWORD}
-        host: rabbitmq
+        host: rabbitmq-broker-service
         port: 5672
