@@ -3,6 +3,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: rabbitmq-broker-hpa
 spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: rabbitmq-broker-headless
   minReplicas: 1
   maxReplicas: 1
   metrics:
@@ -18,4 +22,3 @@ spec:
         target:
           type: Utilization
           averageUtilization: 80
-
