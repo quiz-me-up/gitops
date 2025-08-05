@@ -9,11 +9,14 @@ spec:
       containers:
         - name: rabbitmq
           env:
-            # Configuration pour un seul nœud - pas de clustering
+            # Configuration pour un seul nœud - pas besoin de clustering
             - name: RABBITMQ_USE_LONGNAME
               value: "false"
             - name: RABBITMQ_NODENAME
-              value: rabbit@rabbitmq-broker-headless-0
+              value: "rabbit@localhost"
+            # Désactiver la découverte de cluster
+            - name: RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS
+              value: "-rabbit cluster_formation [{peer_discovery_backend,rabbit_peer_discovery_classic_config}]"
           resources:
             requests:
               memory: "128Mi"
