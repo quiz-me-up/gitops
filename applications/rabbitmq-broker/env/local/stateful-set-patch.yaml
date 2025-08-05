@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: rabbitmq-broker-headless
+  name: rabbitmq-broker-stateful-set
 spec:
   replicas: 1
   template:
@@ -29,4 +29,3 @@ spec:
         resources:
           requests:
             storage: 500Mi
-

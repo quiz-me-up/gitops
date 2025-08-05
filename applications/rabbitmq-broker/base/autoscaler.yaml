@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: StatefulSet
-    name: rabbitmq-broker-headless
+    name: rabbitmq-broker-stateful-set
   minReplicas: 3
   maxReplicas: 10
   metrics:

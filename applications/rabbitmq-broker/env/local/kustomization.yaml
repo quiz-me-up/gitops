@@ -14,14 +14,14 @@ patches:
   - path: stateful-set-patch.yaml
     target:
       kind: StatefulSet
-      name: rabbitmq-broker-headless
+      name: rabbitmq-broker-stateful-set
   - path: autoscaler-patch.yaml
     target:
       kind: HorizontalPodAutoscaler
       name: rabbitmq-broker-hpa
   - target:
       kind: StatefulSet
-      name: rabbitmq-broker-headless
+      name: rabbitmq-broker-stateful-set
     patch: |-
       - op: replace
         path: /spec/replicas
@@ -32,13 +32,12 @@ patches:
     patch: |-
       - op: replace
         path: /data/rabbitmq.conf
-        value: |2
+        value: |
           # Nom du cluster
           cluster_name = quizmeup-rabbitmq-local
           
           # Configuration pour un seul nœud (pas de clustering)
           cluster_formation.peer_discovery_backend = classic_config
-          cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-broker-headless-0.rabbitmq-broker-headless.quizmeup.svc.cluster.local
           
           # Persistance des données
           queue_master_locator = min-masters

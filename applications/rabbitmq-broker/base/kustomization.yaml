@@ -2,7 +2,7 @@ resources:
   - account.yaml
   - autoscaler.yaml
   - config-map.yaml
-  - head-less-service.yaml
+  - headless-service.yaml
   - sealed-secret.yaml
   - service.yaml
   - stateful-set.yaml

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: rabbitmq-broker
 spec:
-  serviceName: rabbitmq-broker-service
+  serviceName: rabbitmq-broker-headless
   replicas: 3
   selector:
     matchLabels:
