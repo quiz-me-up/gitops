@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: rabbitmq-broker-headless
+  name: rabbitmq-broker-stateful-set
   namespace: quizmeup
   labels:
     app: rabbitmq-broker

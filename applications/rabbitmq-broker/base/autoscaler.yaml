@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: rabbitmq-broker-hpa
+  name: rabbitmq-broker-autoscaler
   namespace: quizmeup
 spec:
   scaleTargetRef:

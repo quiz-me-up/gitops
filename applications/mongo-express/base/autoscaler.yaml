@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: mongo-express-horizontal-autoscaler
+  name: mongo-express-autoscaler
   namespace: quizmeup
 spec:
   scaleTargetRef:
