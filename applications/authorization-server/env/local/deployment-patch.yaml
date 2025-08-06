@@ -12,5 +12,5 @@ spec:
     spec:
       containers:
         - name: authorization-server-container
-          image: authorization-server:local
-          imagePullPolicy: Never
+#          image: authorization-server:local
+#          imagePullPolicy: Never

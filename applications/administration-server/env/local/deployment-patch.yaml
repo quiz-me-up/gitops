@@ -12,5 +12,5 @@ spec:
     spec:
       containers:
         - name: administration-server-container
-          image: administration-server:local
-          imagePullPolicy: Never
+#          image: administration-server:local
+#          imagePullPolicy: Never
