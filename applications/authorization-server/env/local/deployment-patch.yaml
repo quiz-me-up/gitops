@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: quizmeup
+  name: authorization-server-deployment
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: service
+      app.kubernetes.io/name: quizmeup-authorization-server
+  template:
+    spec:
+      containers:
+        - name: authorization-server-container
+          image: authorization-server:local
