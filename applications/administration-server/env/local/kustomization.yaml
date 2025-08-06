@@ -1,6 +1,10 @@
 resources:
   - ../../base
 patches:
+  - path: deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: administration-server-deployment
   - path: config-map-patch.yaml
     target:
       kind: ConfigMap

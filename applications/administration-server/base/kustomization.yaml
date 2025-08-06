@@ -1,7 +1,7 @@
-#resources:
-#  - autoscaler.yaml
-#  - config-map.yaml
-#  - deployment.yaml
-#  - ingress.yaml
-#  - sealed-secret.yaml
-#  - service.yaml
+resources:
+  - autoscaler.yaml
+  - config-map.yaml
+  - deployment.yaml
+  - ingress.yaml
+  - sealed-secret.yaml
+  - service.yaml
